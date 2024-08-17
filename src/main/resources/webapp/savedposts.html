@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Posts</title>
+    <link rel="stylesheet" href="/assets/css/myposts.css">
+</head>
+<body>
+<div class="container">
+    <div class="title">
+        <h1>Saved Posts</h1>
+        <button id="go-to-home-btn">Go to Home</button>
+        <button id="go-to-my-posts-btn">My Posts</button>
+        <button id="go-to-liked-btn">Liked Posts</button>
+    </div>
+    <div class="boxs" id="post-container">
+        <!-- Posts will be dynamically loaded here -->
+    </div>
+</div>
+
+<!-- Modal for displaying post details -->
+<div id="postModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <div id="carousel" class="carousel">
+            <button class="prev">&#10094;</button>
+            <div id="carousel-images" class="carousel-images"></div>
+            <button class="next">&#10095;</button>
+        </div>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+<script src="/assets/js/client.js"></script>
+<script src="/assets/js/savedposts.js"></script>
+</body>
+</html>

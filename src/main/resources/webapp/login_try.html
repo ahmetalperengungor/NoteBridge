@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <style>
+        .logo {
+            display: block;
+            width: 250px;
+            height: 250px;
+            margin-bottom: -80px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: -100px;
+        }
+
+        /* Sign Up Form Styles */
+        .popup-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #222;
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            width: 400px;
+        }
+
+        .popup-form .form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .popup-form .form .inputBox {
+            position: relative;
+        }
+
+        .popup-form .form .inputBox input {
+            width: 100%;
+            background: #333;
+            border: none;
+            outline: none;
+            padding: 10px;
+            border-radius: 4px;
+            color: #fff;
+            font-weight: 500;
+            font-size: 1em;
+        }
+
+        .popup-form .form .inputBox i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 10px;
+            color: #aaa;
+            display: block;
+            pointer-events: none;
+            transition: all 0.3s ease-out;
+        }
+
+        .popup-form .form .inputBox input:focus + i {
+            top: -8px;
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        .popup-form .form .inputBox .small-select {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8em;
+        }
+
+        .popup-form .form .inputBox .small-select select {
+            appearance: none;
+            background: #333;
+            border: none;
+            outline: none;
+            padding: 8px;
+            border-radius: 4px;
+            color: #fff;
+            font-weight: 500;
+            width: 70px;
+        }
+
+        .popup-form .form .inputBox input[type="submit"] {
+            background: rgb(220, 206, 5);
+            color: #000;
+            font-weight: 600;
+            font-size: 1.35em;
+            cursor: pointer;
+        }
+
+        .popup-form .form .close-btn {
+            background: #ff4d4d;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.35em;
+            cursor: pointer;
+            text-align: center;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Existing Code -->
+<section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span>
+    <!-- ... other spans ... -->
+    <div class="signin">
+        <div class="content">
+            <h2>
+                <img src="/assets/css/images/logo.png" alt="Logo" class="logo">
+                Sign-In
+            </h2>
+            <div class="form">
+                <div class="inputBox">
+                    <input type="text" required id="email-input">
+                    <i>Username</i>
+                </div>
+                <div class="inputBox">
+                    <input type="password" required id="password-input">
+                    <i>Password</i>
+                </div>
+                <div class="links">
+                    <a href="#" id="signup-link">Signup</a>
+                </div>
+                <div class="inputBox">
+                    <input type="submit" value="Login"  id="loginButton">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sign Up Form Pop-up -->
+<div class="overlay" id="overlay"></div>
+<div class="popup-form" id="signup-form">
+    <div class="form" id="signup-form-content">
+        <div class="inputBox">
+            <input type="text" id="first-name" required>
+            <i>First Name</i>
+        </div>
+        <div class="inputBox">
+            <input type="text" id="last-name" required>
+            <i>Last Name</i>
+        </div>
+        <div class="inputBox">
+            <input type="email" id="email" required>
+            <i>Email</i>
+        </div>
+        <div class="inputBox">
+            <div class="small-select">
+                <select id="phone-country-code" required>
+                    <option value="">Select Country Code</option>
+                    <option value="+31">+31 Netherlands</option>
+                    <option value="+32">+32 Belgium</option>
+                    <option value="+49">+49 Germany</option>
+                    <option value="+33">+33 France</option>
+                    <option value="+44">+44 United Kingdom</option>
+                    <option value="+41">+41 Switzerland</option>
+                    <option value="+34">+34 Spain</option>
+                    <option value="+39">+39 Italy</option>
+                    <!-- Add more countries as needed -->
+                </select>
+                <input type="tel" id="phone-number" placeholder="Phone Number" required>
+            </div>
+        </div>
+        <div class="inputBox" style="display: none;">
+            <input type="text" id="signup-username" required>
+            <i>Username</i>
+        </div>
+        <div class="inputBox">
+            <input type="password" id="signup-password" required>
+            <i>Password</i>
+            <span class="toggle-password" onclick="togglePasswordVisibility('signup-password')">Show</span>
+        </div>
+        <div class="inputBox">
+            <input type="password" id="signup-confirm-password" required>
+            <i>Confirm Password</i>
+            <span class="toggle-password" onclick="togglePasswordVisibility('signup-confirm-password')">Show</span>
+        </div>
+        <div class="inputBox">
+            <input type="submit" id="signup-submit" value="Sign Up">
+        </div>
+        <div class="close-btn" id="close-btn">Close</div>
+    </div>
+</div>
+
+<script src="/assets/js/jquery.min.js"></script>
+
+<script src="/assets/js/client.js"></script>
+<script src="/assets/js/login.js"></script>
+<script src="/assets/js/signup.js"></script>
+
+
+</body>
+
+</html>
+
+

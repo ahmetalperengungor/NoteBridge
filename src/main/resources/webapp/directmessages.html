@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note-Bridge Chat</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/js/client.js"> <!-- Linking the external CSS -->
+    <style>
+        /* Any additional inline styles can go here */
+    </style>
+</head>
+<body>
+<div id="app">
+    <div id="title-bar">
+        <button id="back-button" onclick="location.href='index.html'"><i class="fas fa-arrow-left"></i> Back</button>
+        <div id="title">Note-Bridge Chat</div>
+        <div id="menu-options">
+            <!-- Removed minimize, expand, and close buttons -->
+        </div>
+    </div>
+
+    <div id="server-select">
+        <div class="server-icon active"></div>
+        <div class="divider"></div>
+        <div class="server-icon"></div>
+        <div class="server-icon"></div>
+        <div class="divider"></div>
+        <div class="server-icon add">
+            <div class="icon-container">
+                <i class="fas fa-plus"></i>
+            </div>
+        </div>
+    </div>
+
+    <div id="context-menu">
+        <div id="context-dropdown">
+            <input type="text" id="search-convos" placeholder="Find or start a conversation">
+        </div>
+
+        <div class="text text--muted text--sm text--bold" style="margin: 10px 15px">DIRECT MESSAGES</div>
+        <div class="user-container user-container--active">
+            <div class="user-avatar"></div>
+            <div class="user-name text text--md">User 1</div>
+        </div>
+        <div class="user-container">
+            <div class="user-avatar"></div>
+            <div class="user-name text text--md">User 2</div>
+        </div>
+    </div>
+
+    <div id="content">
+        <div id="toolbar">
+            <div class="container">
+                <i class="fas fa-at" style="color: #666;"></i>
+                <span class="text" style="margin-left: 10px;"><strong>User 1</strong></span>
+                <div class="status-circle status-circle--online"></div>
+                <div class="vertical-rule"></div>
+                <div class="aka"></div>
+            </div>
+        </div>
+        <div id="chat-area">
+            <div class="message-container">
+                <div class="user-icon"></div>
+                <div class="message">
+                    <div class="info-line" style="margin-bottom: 0.5em;">
+                        <span class="text"><strong>User 1</strong></span>
+                        <span class="text text--sm" style="color: #4f4f4f; margin-left: 5px;">Today at 6:23pm</span>
+                    </div>
+                    <div class="text text--md" style="line-height: 1.5em;">Hey, let's join a guitar session!</div>
+                    <div class="text text--md" style="line-height: 1.5em;">There is one tomorrow!</div>
+                </div>
+            </div>
+            <div class="message-container">
+                <div class="user-icon"></div>
+                <div class="message">
+                    <div class="info-line" style="margin-bottom: 0.5em;">
+                        <span class="text"><strong>User 3</strong></span>
+                        <span class="text text--sm" style="color: #4f4f4f; margin-left: 5px;">Today at 6:23pm</span>
+                    </div>
+                    <div class="text text--md" style="line-height: 1.5em;">Hi hungry, I'm dad.</div>
+                </div>
+            </div>
+            <div class="message-container">
+                <div class="user-icon"></div>
+                <div class="message">
+                    <div class="info-line" style="margin-bottom: 0.5em;">
+                        <span class="text"><strong>User 1</strong></span>
+                        <span class="text text--sm" style="color: #4f4f4f; margin-left: 5px;">Today at 6:24pm</span>
+                    </div>
+                    <div class="text text--md" style="line-height: 1.5em;">👎🙄</div>
+                </div>
+            </div>
+        </div>
+        <div id="chat-input">
+            <!-- Chat input area -->
+        </div>
+        <script src="/assets/js/directmessages.js"></script>
+        <script src="/assets/js/jquery.min.js"></script>
+    </div>
+</div>
+</body>
+</html>

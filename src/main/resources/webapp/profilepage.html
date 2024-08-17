@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="/assets/css/profilepage.css">
+</head>
+<body>
+<div class="container">
+    <div class="profile-header">
+        <h1 id="displayName">John Doe</h1>
+        <p id="displayEmail">john.doe@example.com</p>
+        <p id="displayDescription">This is a short bio about John Doe.</p>
+        <div class="profile-pic-container">
+            <label for="profilePicInput">
+                <img id="profilePic" src="/assets/css/images/profile-logo.jpg" alt="Profile Picture">
+                <div class="overlay">
+                    <div class="text">Edit Picture</div>
+                </div>
+            </label>
+            <input type="file" id="profilePicInput" class="hidden">
+        </div>
+        <button id="editProfileButton">Edit Profile</button>
+        <button id="logoutButton">Log Out</button>
+        <button id="backButton">Back</button>
+    </div>
+
+
+
+    <div id="editProfileForm" class="profile-section hidden">
+        <form id="profileForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+
+            <label for="phone">Phone Number:</label>
+            <select id="phoneCountryCode" name="phoneCountryCode">
+                <option value="+31">+31 Netherlands</option>
+                <option value="+32">+32 Belgium</option>
+                <option value="+49">+49 Germany</option>
+                <option value="+33">+33 France</option>
+                <option value="+44">+44 United Kingdom</option>
+                <option value="+41">+41 Switzerland</option>
+                <option value="+34">+34 Spain</option>
+                <option value="+39">+39 Italy</option>
+            </select>
+            <input type="text" id="phone" name="phone" placeholder="Enter your phone number">
+            
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" placeholder="Country">
+       
+            
+            <label for="country">City:</label>
+            <input type="text" id="city" name="city" placeholder="Country">
+            
+            <br>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" placeholder="Enter your description"></textarea>
+
+            <input type="submit" value="Save Changes">
+        </form>
+    </div>
+
+    <div class="profile-section">
+        <h3>Musical Interests</h3>
+        <div id="musicalInterestBlock">
+            <select id="musicalInterestSelect">
+                <option value="Guitar">Guitar</option>
+                <option value="Piano">Piano</option>
+                <option value="Drums">Drums</option>
+                <option value="Violin">Violin</option>
+            </select>
+            <button id="addInterestButton">Add</button>
+            <button id="addCustomInterestButton">Add Custom Interest</button>
+            <input type="text" id="customInterestInput" class="hidden" placeholder="Enter custom interest">
+        </div>
+        <ul class="interests" id="displayInterests">
+        </ul>
+    </div>
+
+    <div class="profile-section">
+        <h3>Liked Posts</h3>
+        <div id="likedPostsGrid" class="liked-posts-grid">
+            <!-- Liked posts will be displayed here as small squares -->
+        </div>
+    </div>
+
+    <div class="profile-section" style="display: none;">
+        <h3>Friends/Followers List</h3>
+        <input type="text" id="friendSearch" placeholder="Search friends...">
+        <button id="searchFriendsButton">Search</button>
+        <ul id="friendsSearchResults">
+        </ul>
+    </div>
+
+    <div class="profile-section">
+        <h3>My Friends</h3>
+        <ul id="myFriendsList">
+            <!-- List of friends will be displayed here -->
+        </ul>
+    </div>
+</div>
+<script src="/assets/js/client.js"></script>
+<script src="/assets/js/profilepage.js"></script>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/authCheck.js"></script>
+</body>
+</html>

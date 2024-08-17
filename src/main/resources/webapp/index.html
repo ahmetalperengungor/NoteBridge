@@ -1,0 +1,314 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="/assets/css/noscript.css">
+    </noscript>
+    <style>
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+            color: white;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .post-type,
+        .post-title {
+            font-weight: bold;
+        }
+
+        .sponsored {
+            background: linear-gradient(135deg, #f1c40f, #f39c12);
+            color: white;
+        }
+
+        .post-title {
+            margin-top: auto;
+        }
+
+        .post-container-small-image {
+            position: relative;
+        }
+
+        .dm-button {
+            background: none !important;
+            border: none !important;
+            cursor: pointer !important;
+            font-size: 24px !important;
+            color: #ffffff !important;
+            padding: 15px !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .dm-button i {
+            display: block !important;
+        }
+
+        .dm-button:hover,
+        .dm-button:focus {
+            color: #FFD700 !important;
+            outline: none !important;
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+        .sponsor-form-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #222;
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            width: 400px;
+        }
+
+        .sponsor-form-container .form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sponsor-form-container .form .inputBox {
+            position: relative;
+        }
+
+        .sponsor-form-container .form .inputBox input,
+        .sponsor-form-container .form .inputBox select {
+            width: 100%;
+            background: #333;
+            border: none;
+            outline: none;
+            padding: 10px;
+            border-radius: 4px;
+            color: #fff;
+            font-weight: 500;
+            font-size: 1em;
+        }
+
+        .sponsor-form-container .form .inputBox i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 10px;
+            color: #aaa;
+            display: block;
+            pointer-events: none;
+            transition: all 0.3s ease-out;
+        }
+
+        .sponsor-form-container .form .inputBox input:focus + i {
+            top: -8px;
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        .sponsor-form-container .form .inputBox input[type="submit"] {
+            background: rgb(220, 206, 5);
+            color: #000;
+            font-weight: 600;
+            font-size: 1.35em;
+            cursor: pointer;
+        }
+
+        .sponsor-form-container .form .close-btn {
+            background: #ff4d4d;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.35em;
+            cursor: pointer;
+            text-align: center;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+    </style>
+</head>
+
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <h1><a href="/notebridge/"><strong>Note-Bridge</strong></a></h1>
+        <nav>
+            <ul>
+                <li>
+                    <input type="text" id="search-input" placeholder="Search" class="search-bar">
+                </li>
+                <li>
+                    <button id="create-post-form-button" class="button-primary">Create Post</button>
+                </li>
+                <li>
+                    <button id="sponsor-button" class="button-primary">Sponsor</button>
+                </li>
+                <li>
+                    <a href="/notebridge/myposts">
+                        <button id="my-posts-button" class="button-primary">My Posts</button>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main"></div>
+
+    <!-- User Profile Section -->
+    <div class="user-profile">
+        <a href="/notebridge/profile">
+            <div class="profile-container">
+                <img src="/assets/css/images/profile-logo.jpg" alt="User Profile"
+                     class="profile-logo" id="mainProfilePic">
+                <span class="username" id="profile-username">guest</span>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            // Retrieve the user profile from local storage
+            const userProfile = await makeHttpRequest('/users/me');
+            const profileUsername = document.getElementById('profile-username');
+            const profilePic = document.getElementById('mainProfilePic');
+
+            if (userProfile) {
+                // Parse the JSON string to an object
+                const userProfileData = userProfile
+
+                // Get the username from the parsed object and update the UI
+                profileUsername.textContent = userProfile.firstName + ' ' + userProfile.lastName;
+                profilePic.src = userProfileData.imageUrl
+
+            } else {
+                console.log('No user profile data found in localStorage.');
+            }
+
+            // Direct Message button functionality
+
+        });
+    </script>
+
+    <!-- Create Post Form -->
+    <div class="right-container">
+        <div class="create-post-form" id="create-post-form">
+            <p class="create-post-form-label">Title</p>
+            <input type="text" class="create-post-form-title" placeholder="Event in Enschede">
+
+            <p class="create-post-form-label">Type</p>
+            <select class="create-post-form-type">
+                <option value="0" selected>Question</option>
+                <option value="1">Discussion</option>
+                <option value="2">Event</option>
+                <option value="3">Sponsored</option>
+            </select>
+
+            <p class="create-post-form-label">Content</p>
+            <textarea class="create-post-form-content" placeholder="I am awesome!"></textarea>
+
+            <p class="create-post-form-label">Location</p>
+            <input type="text" class="create-post-form-location" placeholder="Enter location">
+
+            <p class="create-post-form-label">Upload Images</p>
+            <input type="file" id="image-upload" class="create-post-form-upload" accept="image/*" multiple>
+
+            <button id="post-button" class="button-primary">Post</button>
+        </div>
+    </div>
+
+    <div id="postModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="carousel" class="carousel">
+                <button class="prev">&#10094;</button>
+                <div id="carousel-images" class="carousel-images"></div>
+                <button class="next">&#10095;</button>
+            </div>
+            <div id="dots-container" class="dots-container"></div>
+            <div id="modalContent"></div>
+
+            <!-- Comment Section -->
+            <div class="comment-section">
+                <div id="comment-form" class="hidden">
+                    <textarea id="comment-input" placeholder="Type your comment here..."></textarea>
+                    <button id="submit-comment" class="modal-submit-comment-button">Comment</button>
+                </div>
+                <div id="comments-container"></div>
+            </div>
+            
+
+            <!-- Comment and Like Button -->
+            <div class="modal-buttons" id="modal-buttons-unique-post-id">
+                <span class="like-button" data-id="<%= postId %>"><i class="fa fa-heart"></i></span>
+                <button class="comment-button" data-id="<%= postId %>"><i class="fa fa-comment"></i> Comment</button>
+            </div>
+
+
+            <!-- Scripts /-->
+            <script src="/assets/js/jquery.min.js"></script>
+            <script src="/assets/js/jquery.poptrox.min.js"></script>
+            <script src="/assets/js/client.js"></script>
+            <script src="/assets/js/browser.min.js"></script>
+            <script src="/assets/js/breakpoints.min.js"></script>
+            <script src="/assets/js/util.js"></script>
+            <script src="/assets/js/main.js"></script>
+            <script src="/assets/js/createpost.js"></script>
+            <script src="/assets/js/authCheck.js"></script>
+            <script src="/assets/js/sponsor.js"></script>
+
+        </div>
+    </div>
+</div>
+<!-- Sponsor Form Pop-up -->
+<div class="overlay" id="overlay"></div>
+<div class="sponsor-form-container" id="sponsor-form">
+    <div class="form" id="sponsor-form-content">
+        <div class="inputBox">
+            <input type="text" id="company-name" required>
+            <i>Company Name</i>
+        </div>
+        <div class="inputBox">
+            <input type="number" id="price" required>
+            <i>Price</i>
+        </div>
+        <div class="inputBox">
+            <input type="date" id="from-date" required>
+            <i>From Date</i>
+        </div>
+        <div class="inputBox">
+            <input type="number" id="num-posts" required>
+            <i>Number of Posts to Sponsor</i>
+        </div>
+        <div class="inputBox">
+            <input type="submit" id="sponsor-submit" value="Submit">
+        </div>
+        <div class="close-btn" id="sponsor-close-btn">Close</div>
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Posts</title>
+    <link rel="stylesheet" href="/assets/css/myposts.css">
+</head>
+<body>
+<div class="container">
+    <div class="title">
+        <h1>My Posts</h1>
+        <button id="create-post-btn">Create New Post</button>
+        <button id="go-to-home-btn">Go to Home</button>
+        <button id="go-to-liked-btn">Liked Posts</button>
+    </div>
+    <div class="boxs" id="post-container">
+        <!-- Posts will be dynamically loaded here -->
+    </div>
+</div>
+
+<!-- Modal for displaying post details -->
+<div id="postModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <div id="carousel" class="carousel">
+            <button class="prev">&#10094;</button>
+            <div id="carousel-images" class="carousel-images"></div>
+            <button class="next">&#10095;</button>
+        </div>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+<!-- Modal for creating post -->
+<div id="createPostModal" class="modal">
+    <div class="modal-content">
+        <span class="close-create">&times;</span>
+        <h2>Create Post</h2>
+        <div class="create-post-form" id="create-post-form">
+            <p class="create-post-form-label">Title</p>
+            <input type="text" class="create-post-form-title" placeholder="Event in Enschede" id="createPostTitle" />
+
+            <p class="create-post-form-label">Type</p>
+            <select class="create-post-form-type" id="createPostType">
+                <option value="0">Question</option>
+                <option value="1">Discussion</option>
+                <option value="2">Event</option>
+                <option value="3">Sponsored</option>
+            </select>
+
+            <p class="create-post-form-label">Description</p>
+            <textarea class="create-post-form-description" placeholder="I am awesome!" id="createPostDescription"></textarea>
+
+            <p class="create-post-form-label">Location</p>
+            <input type="text" class="create-post-form-location" placeholder="Enter location" id="createPostLocation" />
+
+            <p class="create-post-form-label">Upload Images</p>
+            <input type="file" id="createPostImageUpload" class="create-post-form-upload" accept="image/*" multiple />
+
+            <button id="createPostButton" class="button-primary">Post</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for editing post details -->
+<div id="editPostModal" class="modal">
+    <div class="modal-content">
+        <span class="close-edit">&times;</span>
+        <h2>Edit Post</h2>
+        <form id="editPostForm">
+            <label for="editTitle">Title:</label>
+            <input type="text" id="editTitle" name="title" required>
+            <label for="editDescription">Description:</label>
+            <textarea id="editDescription" name="description" required></textarea>
+            <label for="editLocation">Location:</label>
+            <input type="text" id="editLocation" name="location" required>
+            <label for="editType">Type:</label>
+            <select id="editType" class="edit-post-form-type" name="type">
+                <option value="0">Question</option>
+                <option value="1">Discussion</option>
+                <option value="2">Event</option>
+                <option value="3">Sponsored</option>
+            </select>
+            <label for="editImageUrls">Image URLs (comma separated):</label>
+            <input type="text" id="editImageUrls" name="imageUrls" required>
+            <label for="uploadNewImages">Upload New Images:</label>
+            <input type="file" id="uploadNewImages" accept="image/*" multiple>
+            <input type="hidden" id="editPostIndex">
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+<script src="/assets/js/client.js"></script>
+<script src="/assets/js/myposts.js"></script>
+</body>
+</html>

@@ -1,0 +1,739 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'); /* Ensure full viewport coverage for background */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* Container styling */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: linear-gradient(135deg, #000000, #2f2f2f, #b8860b);
+    color: white;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Title Container */
+.title {
+    margin: 30px;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
+
+/* Title Heading */
+.title h1 {
+    font-size: 48px;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    color: #FFFFFF;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: visible;
+}
+
+/* Title Hover Effects */
+.title h1:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Title Underline */
+.title h1::before {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    border-radius: 2px;
+}
+
+/* Music Notes for Title */
+.title h1::after {
+    content: "\266A \266B";
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    font-size: 24px;
+    color: #FFD700;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    overflow: visible;
+    right: 10%;
+    transform: rotate(20deg);
+}
+
+.title h1:hover::after {
+    opacity: 1;
+    top: 40px;
+    transform: translateY(20px) rotate(0deg);
+}
+
+/* Additional Music Note Animation for Title */
+@keyframes fall {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+}
+
+.title h1:hover::after {
+    animation: fall 1.5s ease-in-out forwards;
+}
+
+/* Box container styling */
+.boxs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Individual box styling */
+.box {
+    position: relative;
+    width: 300px;
+    height: 350px;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(145deg, #3c3c3c, #2a2a2a);
+    overflow: visible;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    z-index: 1; /* Lower z-index to ensure dropdown is above */
+}
+
+/* Music Notes for Boxes */
+.box::before,
+.box::after {
+    content: "\266B";
+    position: absolute;
+    opacity: 0;
+    font-size: 24px;
+    color: #ffff5f;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.box::before {
+    top: 350px;
+    left: 20%;
+    transform: rotate(10deg);
+}
+
+.box::after {
+    top: 350px;
+    right: 20%;
+    transform: rotate(-10deg);
+}
+
+.box:hover::before,
+.box:hover::after {
+    opacity: 1;
+    transform: translateY(50px) rotate(0deg);
+}
+
+/* Additional Music Note Animation for Boxes */
+@keyframes fallBox {
+    0% {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(25px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+}
+
+.box:hover::before {
+    animation: fallBox 1.0s ease-in-out forwards;
+}
+
+.box:hover::after {
+    animation: fallBox 1.0s 0.5s ease-in-out forwards;
+}
+
+.box .img-area {
+    width: 100%;
+    height: 60%;
+}
+
+.box .img-area img {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.box .content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+.box .content h3 {
+    color: #f1c40f;
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.box .content p {
+    margin-top: 5px;
+    color: #ecf0f1;
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Footer styling */
+.footer {
+    margin: 30px;
+    width: 80%;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+}
+
+.footer a {
+    color: #ecf0f1;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: #bdc3c7;
+}
+
+/* Modal background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    backdrop-filter: blur(5px);
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #1c1c1e; /* Slightly darker for more contrast */
+    margin: 5% auto; /* Less margin for a more immersive look */
+    padding: 40px; /* Increased padding for spaciousness */
+    width: 70%;
+    max-width: 500px; /* More compact for a sleek appearance */
+    color: #ffffff;
+    border-radius: 20px; /* Softer, more modern rounded corners */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); /* Deeper shadow for more depth */
+    position: relative; /* For absolute positioning of the close button */
+    text-align: left; /* Align text to the left */
+    animation: fadeIn 0.5s ease; /* Smooth fade-in animation */
+    font-family: 'Arial', 'Helvetica Neue', Arial, sans-serif; /* Trendy, Instagram-like font */
+    border: 1px solid #444; /* Subtle border for more definition */
+    overflow: hidden; /* Ensure content stays inside */
+}
+
+@keyframes zoom-in {
+    from {
+        opacity: 0;
+        transform: scale(0.8); /* Start smaller */
+    }
+    to {
+        opacity: 1;
+        transform: scale(1); /* End at normal size */
+    }
+}
+/* Image within modal */
+.modal-image {
+    width: 120%;
+    max-width: 100%;
+    height: auto;
+    max-height: 1000px; /* Set a max-height to prevent overflow */
+    display: block;
+    margin: 10px 0; /* Add margin for spacing */
+    object-fit: none; /* Ensure the image scales proportionally */
+}
+
+.close , .close-edit{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus,
+.close-edit:hover,
+.close-edit:focus{
+    color: #ff6666;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Carousel container */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Ensure full width */
+    height: 100%; /* Ensure full height */
+    max-width: 600px; /* Optional: constrain the max width for better layout */
+    max-height: 600px; /* Optional: constrain the max height for better layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    margin: 0 auto; /* Center the carousel horizontally */
+}
+
+.carousel-images {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    object-fit: cover;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Hide overflow to maintain aspect ratio */
+    aspect-ratio: 1 / 1; /* Maintain a square aspect ratio */
+}
+
+/* Carousel images */
+.carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the container */
+    object-position: center; /* Center the image within the container */
+    opacity: 0; /* Initially hidden */
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.carousel img.active {
+    opacity: 1;
+    z-index: 1; /* Ensure the active image is on top */
+    transform: translateX(0); /* No horizontal shift */
+}
+
+/* Navigation buttons for carousel */
+.prev, .next {
+    display: block; /* Ensure buttons are displayed */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px; /* Arrow size */
+    color: white;
+    user-select: none;
+    cursor: pointer;
+    background: transparent; /* Ensure transparent background */
+    border: none; /* No border */
+    padding: 0; /* No padding */
+    margin: 0; /* No margin */
+    line-height: 1; /* No extra space around the arrows */
+    outline: none; /* Remove any outline */
+    text-shadow: none; /* Remove text shadow */
+    box-shadow: none; /* Remove any box shadow */
+    -webkit-appearance: none; /* Remove default appearance for webkit browsers */
+    transition: color 0.3s ease;
+}
+.prev, .next {
+    z-index: 2; /* Ensure buttons are above images */
+}
+/* Previous button */
+.prev {
+    left: 20px;
+}
+
+/* Next button */
+.next {
+    right: 20px;
+}
+
+/* Custom arrows using Unicode characters */
+.prev::before {
+    content: '\276E'; /* Unicode for left-pointing arrow */
+}
+
+.next::before {
+    content: '\276F'; /* Unicode for right-pointing arrow */
+}
+
+/* Hover effects for navigation buttons */
+.prev:hover, .next:hover {
+    color: #dddddd; /* Lighter color on hover */
+    background: transparent !important; /* Ensure transparent background on hover */
+    border: none !important; /* No border on hover */
+    outline: none !important; /* Remove outline on hover */
+    box-shadow: none !important; /* Remove box shadow on hover */
+}
+form label {
+    margin-top: 10px;
+}
+
+form input,
+form textarea {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5cb85c;
+    color: white;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #4cae4c;
+}
+/* Common button styling */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    border: none;
+    border-radius: 50px; /* Rounded and modern look */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #fff; /* White text for better contrast */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add some depth */
+    position: relative; /* For potential absolute positioning */
+    margin: 5px; /* Space out buttons */
+    overflow: hidden; /* Hide overflow for effect */
+}
+
+/* Edit button styling */
+.edit-button {
+    background: linear-gradient(135deg, #57c6e1, #0096c7); /* Attractive gradient */
+}
+
+.edit-button:hover {
+    background: linear-gradient(135deg, #0096c7, #57c6e1); /* Reverse gradient on hover */
+    box-shadow: 0 6px 15px rgba(0, 150, 199, 0.5); /* More pronounced shadow */
+}
+
+/* Delete button styling */
+.delete-button {
+    background: linear-gradient(135deg, #ff6b6b, #e63946); /* Bold gradient */
+}
+
+.delete-button:hover {
+    background: linear-gradient(135deg, #e63946, #ff6b6b); /* Reverse gradient on hover */
+    box-shadow: 0 6px 15px rgba(230, 57, 70, 0.5); /* More pronounced shadow */
+}
+
+/* Button icon styling */
+.button i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+/* Button press effect */
+.button:active {
+    transform: scale(0.95); /* Scale down slightly */
+}
+
+/* Optional ripple effect */
+.button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    background: rgba(255, 255, 255, 0.3);
+    opacity: 0;
+    transition: opacity 0.4s, transform 0.4s;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.button:active::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+.more-options {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    top: 10px; /* Adjust position slightly downward */
+    transition: color 0.3s ease;
+    z-index: 10; /* Ensure button is above background elements */
+}
+
+.more-options:hover {
+    color: #dddddd;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    display: none; /* Ensure initially hidden */
+    position: absolute;
+    top: 30px; /* Position slightly below the button */
+    right: 0;
+    background-color: #444444;
+    padding: 0;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 100; /* High z-index to stay above other elements */
+    width: 150px; /* Set a fixed width */
+    max-height: 0; /* Initial state: collapsed */
+    overflow: hidden; /* Hide overflow */
+    opacity: 0; /* Ensure initially invisible */
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out, opacity 0.3s ease-out; /* Smooth transition */
+}
+
+/* Dropdown menu buttons */
+.dropdown-menu .button {
+    display: block;
+    margin: 0; /* Remove margins */
+    padding: 10px 20px; /* Padding inside */
+    font-size: 16px;
+    text-align: left;
+    width: 100%;
+    background: none; /* Ensure no background overlaps */
+    border: none; /* Remove borders */
+    color: white; /* Ensure text is visible */
+}
+
+.dropdown-menu .button i {
+    margin-right: 8px;
+}
+
+/* Dropdown menu styling */
+.more-options-container {
+    position: relative;
+    display: inline-block;
+    z-index: 2; /* Higher than .box to ensure dropdown is above */
+}
+
+/* Ensure the dropdown menu appears on top of other elements */
+.box {
+    position: relative;
+    overflow: visible; /* Ensure overflow doesn't clip the dropdown */
+    z-index: 1; /* Lower z-index compared to dropdown */
+}
+
+/* Button styling for edit and delete */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 5px 0;
+}
+
+.edit-button {
+    background: linear-gradient(135deg, #57c6e1, #0096c7);
+}
+
+.edit-button:hover {
+    background: linear-gradient(135deg, #0096c7, #57c6e1);
+    box-shadow: 0 6px 15px rgba(0, 150, 199, 0.5);
+}
+
+.delete-button {
+    background: linear-gradient(135deg, #ff6b6b, #e63946);
+}
+
+.delete-button:hover {
+    background: linear-gradient(135deg, #e63946, #ff6b6b);
+    box-shadow: 0 6px 15px rgba(230, 57, 70, 0.5);
+}
+
+/* Button Styling */
+#create-post-btn, #edit-post-btn, #delete-post-btn, #go-to-home-btn, #createPostButton, #go-to-liked-btn, #go-to-saved-btn, #go-to-my-posts-btn {
+    background: linear-gradient(135deg, #f1c40f, #f39c12); /* Gradient background */
+    color: #fff; /* Text color */
+    border: none; /* Remove default border */
+    padding: 12px 24px; /* Increase padding for better feel */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Cursor style */
+    border-radius: 8px; /* Rounded corners */
+    margin: 10px;
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+    position: relative; /* For pseudo-element effects */
+    overflow: hidden; /* Hide pseudo-element overflow */
+    text-transform: uppercase; /* Uppercase for better readability */
+    font-weight: 600; /* Bold font */
+}
+
+#edit-post-btn, #delete-post-btn, #go-to-home-btn, #go-to-liked-btn, #go-to-saved-btn {
+    display: inline-block;
+}
+
+#create-post-btn:hover, #edit-post-btn:hover, #delete-post-btn:hover, #go-to-home-btn:hover, #createPostButton:hover, #go-to-liked-btn:hover, #go-to-saved-btn:hover, #go-to-my-posts-btn:hover {
+    background: linear-gradient(135deg, #e2b607, #d4a10d); /* Slightly darker gradient */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+    transform: translateY(-3px); /* Lift effect */
+}
+
+#create-post-btn:before, #edit-post-btn:before, #delete-post-btn:before, #go-to-home-btn:before, #createPostButton:before, #go-to-liked-btn:before, #go-to-saved-btn:before, #go-to-my-posts-btn:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.15); /* Highlight effect */
+    transition: all 0.3s;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+}
+
+#create-post-btn:hover:before, #edit-post-btn:hover:before, #delete-post-btn:hover:before, #go-to-home-btn:hover:before, #createPostButton:hover:before, #go-to-liked-btn:hover:before, #go-to-saved-btn:hover:before, #go-to-my-posts-btn:hover:before {
+    transform: translate(-50%, -50%) scale(1); /* Expand on hover */
+}
+
+/* Active State */
+#create-post-btn:active, #edit-post-btn:active, #delete-post-btn:active, #go-to-home-btn:active, #createPostButton:active, #go-to-liked-btn:active, #go-to-saved-btn:active {
+    transform: translateY(0); /* Reset lift effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+}
+
+/* Form Input Styling */
+#editPostForm input[type="text"], #editPostForm textarea, #editPostForm input[type="file"],
+#create-post-form input[type="text"], #create-post-form textarea, #create-post-form select,
+#create-post-form input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #ccc; /* Border color */
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+    font-size: 14px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+}
+
+#editPostForm input[type="text"]:focus, #editPostForm textarea:focus, #editPostForm input[type="file"]:focus,
+#create-post-form input[type="text"]:focus, #create-post-form textarea:focus, #create-post-form select:focus,
+#create-post-form input[type="file"]:focus {
+    border-color: #f1c40f; /* Focus border color */
+    box-shadow: 0 0 12px rgba(241, 196, 15, 0.6); /* More noticeable focus shadow effect */
+    outline: none; /* Remove default outline */
+    background-color: #fffbea; /* Light yellow background on focus */
+}
+
+/* Label Styling */
+#editPostForm label, #create-post-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px; /* Font size for labels */
+    color: #333; /* Label text color */
+    text-transform: uppercase; /* Uppercase for emphasis */
+}
+
+/* Form Container Styling */
+#editPostForm > div, #create-post-form > div {
+    margin-bottom: 20px; /* Increased spacing between form elements */
+}
+
+/* Add subtle glow effect to buttons on hover */
+#create-post-btn:hover, #edit-post-btn:hover, #delete-post-btn:hover, #go-to-home-btn:hover, #createPostButton:hover, #go-to-liked-btn:hover, #go-to-saved-btn:hover, #go-to-my-posts-btn:hover {
+    box-shadow: 0 0 20px rgba(241, 196, 15, 0.5); /* Glow effect */
+}
+
+/* Add animation for button hover state */
+#create-post-btn, #edit-post-btn, #delete-post-btn, #go-to-home-btn, #createPostButton, #go-to-liked-btn, #go-to-saved-btn, #go-to-my-posts-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+#create-post-btn::after, #edit-post-btn::after, #delete-post-btn::after, #go-to-home-btn::after, #createPostButton::after, #go-to-liked-btn::after, #go-to-saved-btn::after, #go-to-my-posts-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2); /* Highlight effect */
+    transition: transform 0.3s;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+}
+
+#create-post-btn:hover::after, #edit-post-btn:hover::after, #delete-post-btn:hover::after, #go-to-home-btn:hover::after, #createPostButton:hover::after, #go-to-liked-btn:hover::after, #go-to-saved-btn:hover::after,#go-to-my-posts-btn:hover::after {
+    transform: translate(-50%, -50%) scale(1); /* Expand on hover */
+}
