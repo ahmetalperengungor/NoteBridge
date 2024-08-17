@@ -1,7 +1,7 @@
 # di5
 
-Currently there is an issue with the opening url, it opens http://localhost:8080/notebridge5_war/ but need to add notebridge at the end
-Therefore correct uri: http://localhost:8080/notebridge/
+Term project for web lecture at Twente University 2023/2024 spring semester.
+A group of 4 students (Alperen, Eren, Marin, Sabin) worked on the project.
 
 Trello link: https://trello.com/b/jbqXUfSr/note-bridge-5
 
